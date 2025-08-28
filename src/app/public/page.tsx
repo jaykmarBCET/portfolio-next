@@ -46,8 +46,7 @@ function PublicPage() {
   useEffect(() => {
     handelAllInfo()
   }, [handelAllInfo])
-
-
+  
   return (
     <div className='w-full overflow-x-hidden  min-h-screen flex flex-col   items-center absolute top-0 left-0 bg-gray-900 '>
       {/* about Card */}
