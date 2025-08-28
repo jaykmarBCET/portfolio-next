@@ -73,8 +73,8 @@ function InterestLanguageCard() {
                                         <Image fill src={getIconUrl(item.url)} alt='' />
                                     </div>
                                     <div>
-                                        <p className='text-[15px] bold italic'>{item.username}</p>
-                                        <p className='text-[12px]'>{item.platform}</p>
+                                        <p className='text-[10px] bold italic'>{item.username}</p>
+                                        <p className='text-[10px]'>{item.platform}</p>
                                     </div>
                                 </div>
                                 

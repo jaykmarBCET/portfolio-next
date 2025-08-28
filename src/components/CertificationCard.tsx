@@ -10,7 +10,7 @@ function CertificationCard() {
   }
 
   return (
-    <div className="mt-4 px-4 sm:px-8 py-10 bg-[#39393934] w-[96vw] shadow rounded-2xl">
+    <div className="mt-4 px-4 text-white sm:px-8 py-10 bg-[#39393934] w-[96vw] shadow rounded-2xl">
       <h1 className="text-center text-3xl md:text-4xl font-extrabold italic tracking-wide mb-10 text-gray-800 dark:text-gray-100">
         Certificates
       </h1>
