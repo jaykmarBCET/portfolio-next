@@ -1,8 +1,8 @@
 import { publicSignature } from "@/services/GenerateSignature.service";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 
 
-export const GET = (req:NextRequest)=>{
+export const GET = ()=>{
     return  NextResponse.json( publicSignature(),{status:200})
 }

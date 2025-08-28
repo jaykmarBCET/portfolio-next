@@ -2,8 +2,6 @@ import { dbConnect } from "@/connection/dbConnect";
 import ProjectModel from "@/models/Projects.model";
 import ProjectsModel from "@/models/Projects.model";
 import { authUser } from "@/services/User.service";
-import mongoose from "mongoose";
-import mognoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 

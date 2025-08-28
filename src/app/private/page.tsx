@@ -20,7 +20,7 @@ function PrivateHomePage() {
 
   useEffect(()=>{
     authenticationChecker()
-  },[])
+  },[authenticationChecker])
 
   return (
     <div className='flex flex-col items-center w-full min-h-screen px-4 sm:px-6 lg:px-10 py-10 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white'>

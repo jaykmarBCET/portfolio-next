@@ -38,7 +38,7 @@ const AboutCard = () => {
             const domain = parsedUrl.hostname;
             return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
         } catch (error) {
-            console.error('Invalid URL:', baseUrl);
+            console.log(error)
             return '/fallback-icon.png'; // Local fallback icon
         }
     };

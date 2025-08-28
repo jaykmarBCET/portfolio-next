@@ -45,7 +45,7 @@ function PublicPage() {
 
   useEffect(() => {
     handelAllInfo()
-  }, [])
+  }, [handelAllInfo])
 
 
   return (

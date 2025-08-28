@@ -2,8 +2,6 @@ import { usePublicProfileStore } from '@/store/public.store'
 
 import React from 'react'
 import { Badge } from './ui/badge'
-import { Button } from './ui/button';
-import { ContactRound } from 'lucide-react';
 import Image from 'next/image';
 
 const getIconUrl = (baseUrl: string): string => {
@@ -13,7 +11,7 @@ const getIconUrl = (baseUrl: string): string => {
         const domain = parsedUrl.hostname;
         return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
     } catch (error) {
-        console.error('Invalid URL:', baseUrl);
+        console.log(error)
         return '/fallback-icon.png'; // Local fallback icon
     }
 };

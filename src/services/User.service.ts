@@ -1,6 +1,6 @@
 import { dbConnect } from "@/connection/dbConnect"
 import UserModel from "@/models/User.model"
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest } from "next/server"
 import JWT from 'jsonwebtoken'
 
 dbConnect()

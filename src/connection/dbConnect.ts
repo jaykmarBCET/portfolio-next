@@ -13,7 +13,7 @@ export const dbConnect = async () => {
       throw new Error("❌ DATABASE_URL is not defined in environment variables");
     }
 
-    const conn = await mongoose.connect(process.env.DATABASE_URL);
+    const conn = await mongoose.connect(process.env.DATABASE_URL,{dbName:"portfolio"});
 
     isConnected = !!conn.connections[0].readyState;
 

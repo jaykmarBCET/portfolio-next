@@ -105,14 +105,14 @@ export const ProjectCarousel: React.FC<CarouselProps> = ({
                 {projects.map((project, index) => (
                   <SwiperSlide key={index}>
                     <div className="size-full rounded-3xl">
-                      <CardRender projectId={project._id} technologies={project.technologies} title={project.title} description={project.description} demoLink={project.liveUrl as string} codeLink={project.githubUrl as string} image={project.imageUrl as string} />
+                      <CardRender projectId={project._id} technologies={project.technologies} title={project.title}  demoLink={project.liveUrl as string} codeLink={project.githubUrl as string} image={project.imageUrl as string} />
                     </div>
                   </SwiperSlide>
                 ))}
                 {projects.map((project, index) => (
                   <SwiperSlide key={index}>
                     <div className="size-full rounded-3xl">
-                      <CardRender projectId={project._id} technologies={project.technologies} title={project.title} description={project.description} demoLink={project.liveUrl as string} codeLink={project.githubUrl as string} image={project.imageUrl as string} />
+                      <CardRender projectId={project._id} technologies={project.technologies} title={project.title}  demoLink={project.liveUrl as string} codeLink={project.githubUrl as string} image={project.imageUrl as string} />
                     </div>
                   </SwiperSlide>
                 ))}
@@ -127,7 +127,6 @@ export const ProjectCarousel: React.FC<CarouselProps> = ({
 
 type ProjectProps = {
   title: string;
-  description: string;
   image: string;
   demoLink: string;
   codeLink: string;
@@ -135,7 +134,7 @@ type ProjectProps = {
   projectId?:string
 }
 
-function CardRender({ title,projectId, description, image, demoLink, codeLink, technologies }: ProjectProps) {
+function CardRender({ title,projectId,  image, demoLink, codeLink, technologies }: ProjectProps) {
   const router = useRouter()
   return (
     <Card className="rounded-2xl w-full bg-white text-black max-w-sm sm:max-w-md md:max-w-lg shadow-lg hover:scale-[1.02] transition-transform">

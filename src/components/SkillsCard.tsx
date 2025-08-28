@@ -2,7 +2,6 @@
 import { usePublicProfileStore } from '@/store/public.store'
 import React, { useEffect, useRef } from 'react'
 import { Badge } from './ui/badge'
-import { DevIcons } from '@/constants/SkiilsIcons'
 import gsap from 'gsap'
 
 const getLevel = (level: "Beginner" | "Intermediate" | "Advanced" | "Expert") => {

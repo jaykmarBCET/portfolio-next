@@ -1,7 +1,3 @@
-import Image from "next/image";
-import {Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Github, ExternalLink } from "lucide-react";
 import { usePublicProfileStore } from '@/store/public.store'
 import React from 'react'
 import { ProjectCarousel } from "./ui/card-carousel";

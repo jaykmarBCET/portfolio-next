@@ -8,7 +8,7 @@ function ResumePage() {
 
   useEffect(() => {
     getResumes()
-  }, [])
+  }, [getResumes])
 
   if (!resumes || resumes.length === 0) {
     return (

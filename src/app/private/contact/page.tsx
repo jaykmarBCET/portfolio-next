@@ -35,7 +35,7 @@ function ContactPage() {
 
   useEffect(() => {
     getContacts()
-  }, [])
+  }, [getContacts])
 
   if (!addContact || !updateContact || !deleteContact) {
     return <div>Store methods not available.</div>

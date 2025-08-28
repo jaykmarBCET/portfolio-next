@@ -15,7 +15,6 @@ import {
 } from '@/components/ui/select'
 import { Resume } from '@/types/types'
 import { FaFilePdf, FaFileImage } from 'react-icons/fa'
-import ReactPDF from '@react-pdf/renderer';
 
 
 

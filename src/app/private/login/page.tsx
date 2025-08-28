@@ -25,12 +25,12 @@ function LoginPage() {
   }
   useEffect(()=>{
     getUser()
-  },[])
+  },[getUser])
   useEffect(()=>{
     if(user && user.email){
       router.replace("/private")
     }
-  },[user])
+  },[user, router])
   return (
     <div className="w-full flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4">
       <motion.div

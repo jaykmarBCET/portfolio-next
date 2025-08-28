@@ -18,11 +18,11 @@ function ProjectPage() {
     if (!user) {
       router.replace('/private/login')
     }
-  }, [user])
+  }, [user,router])
 
   useEffect(() => {
     getProjects()
-  }, [])
+  }, [getProjects])
 
   if (!addProject || !updateProject || !deleteProject) {
     return <h1>Empty data</h1>
