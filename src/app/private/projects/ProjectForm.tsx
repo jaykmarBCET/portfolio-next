@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import { Project } from '@/types/types'
 import {
   Card,
@@ -12,17 +12,13 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { technologies } from '@/constants/constant'
 
-
-
-
-
 export const ProjectForm = ({
   mode,
   project,
   onCancel,
   onSave,
 }: {
-  mode: "add" | "edit"
+  mode: 'add' | 'edit'
   project?: Project
   onCancel: () => void
   onSave: (p: Project) => void
@@ -38,10 +34,19 @@ export const ProjectForm = ({
     }
   )
 
+  const toggleTechnology = (tech: string) => {
+    setUpdate((prev) => ({
+      ...prev,
+      technologies: prev.technologies.includes(tech)
+        ? prev.technologies.filter((t) => t !== tech)
+        : [...prev.technologies, tech],
+    }))
+  }
+
   return (
     <Card className="p-6 shadow-lg rounded-xl">
       <CardHeader>
-        <CardTitle>{mode === "add" ? "Add New Project" : "Update Project"}</CardTitle>
+        <CardTitle>{mode === 'add' ? 'Add New Project' : 'Update Project'}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <Input
@@ -70,29 +75,33 @@ export const ProjectForm = ({
           placeholder="Project Image URL"
         />
 
-        <select
-          multiple
-          value={update.technologies}
-          onChange={(e) => {
-            const selected = Array.from(
-              e.target.selectedOptions,
-              (option) => option.value
+        {/* Row-wise technology selection with border on selected */}
+        <div className="flex flex-wrap gap-2">
+          {technologies.map((tech, idx) => {
+            const isSelected = update.technologies.includes(tech)
+            return (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => toggleTechnology(tech)}
+                className={`px-3 py-1 flex justify-center flex-col rounded-lg transition border 
+                  ${
+                    isSelected
+                      ? 'border-gray-500 hover:bg-gray-900 text-gray-900 hover:text-gray-200 bg-gray-200 '
+                      : 'border-gray-500 hover:bg-gray-800 border-1 '
+                  }`}
+              >
+                <i className={`devicon-${tech.toLowerCase()}-original devicon-${tech.toLowerCase()}-plain colored `}/> 
+                <p className='text-[12px] font-semibold'>{tech}</p>
+              </button>
             )
-            setUpdate({ ...update, technologies: selected })
-          }}
-          className="border rounded p-2 w-full"
-        >
-          {technologies.map((item, idx) => (
-            <option key={idx} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
+          })}
+        </div>
       </CardContent>
 
       <CardFooter className="flex gap-3 justify-end">
         <Button onClick={() => onSave(update)}>
-          {mode === "add" ? "Add" : "Save"}
+          {mode === 'add' ? 'Add' : 'Save'}
         </Button>
         <Button variant="outline" onClick={onCancel}>
           Cancel

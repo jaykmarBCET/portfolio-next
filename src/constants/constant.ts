@@ -135,15 +135,15 @@ export const AllPrivatePage: {
 ];
 
 export const technologies = [
-  "JavaScript", "TypeScript", "Python", "Java", "C", "C++", "C#", "Go",
+  "JavaScript", "TypeScript", "Python", "Java", "C", "CPlusPlus", "Csharp", "Go",
   "Rust", "PHP", "Ruby", "Swift", "Kotlin", "Scala", "R", "Dart",
 
   // Frontend
-  "React", "Next.js", "Angular", "Vue.js", "Svelte", "SolidJS",
-  "TailwindCSS", "Bootstrap", "Material UI", "Chakra UI","Shadcn",
+  "React", "Nextjs", "Angular", "Vuejs", "Svelte", "SolidJS",
+  "TailwindCSS", "Bootstrap", "MaterialUi", "ChakraUi","Shadcn",
 
   // Backend
-  "Node.js", "Express", "NestJS", "Spring Boot", "Django", "Flask",
+  "Nodejs", "Express", "NestJS", "Spring", "Django", "Flask",
   "FastAPI", "Ruby on Rails", "Laravel", "ASP.NET Core",
 
   // Databases
