@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { usePublicProfileStore } from '@/store/public.store'
 import AboutCard from '@/components/AboutCard'
 import SkillsCard from '@/components/SkillsCard'
@@ -9,8 +9,10 @@ import ExperienceCard from '@/components/ExpreriencesCard'
 import CertificationCard from '@/components/CertificationCard'
 import InterestLanguageCard from '@/components/InterestLanguageCard'
 import ContactCard from '@/components/ContactCard'
+import {CircleLoader,ClimbingBoxLoader,BarLoader} from 'react-spinners'
 
 function PublicPage() {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const {
     getUser,
     getProjects,
@@ -31,21 +33,36 @@ function PublicPage() {
   } = usePublicProfileStore()
 
   const handelAllInfo = useCallback(async () => {
-    await getUser()
-    await getCertifications()
-    await getEducation()
-    await getExperiences()
-    await getInterests()
-    await getLanguages()
-    await getProjects()
-    await getResumes()
-    await getSkills()
-    await getSocialMedia()
+    try {
+      setIsLoading(true)
+      await getUser()
+      await getSkills()
+      await getProjects()
+      await getLanguages()
+      await getResumes()
+      await getEducation()
+      await getCertifications()
+      await getExperiences()
+      await getInterests()
+      await getSocialMedia()
+    } catch (error) {
+      
+    }finally{
+      setIsLoading(false);
+    }
   }, [getCertifications, getEducation, getExperiences, getInterests, getLanguages, getProjects, getResumes, getSkills, getSocialMedia, getUser])
 
   useEffect(() => {
     handelAllInfo()
   }, [handelAllInfo])
+
+  if(isLoading){
+    return <div className='w-screen h-screen flex flex-col justify-center items-center'>
+      <CircleLoader color='white' size={100}/>
+      <ClimbingBoxLoader size={20} color='white'/>
+      <p className='text-sm italic mt-5'>Please wait while loading page...</p>
+       </div>
+  }
   
   return (
     <div className='w-full overflow-x-hidden  min-h-screen flex flex-col   items-center absolute top-0 left-0 bg-gray-900 '>
