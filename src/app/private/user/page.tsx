@@ -14,10 +14,12 @@ import { User } from '@/types/types'
 function UserPage() {
   const { user, updateUser, getUser } = useProfileStore()
   const router = useRouter()
+  const [stackNameText, setStackNameText] = useState('')
   const [formData, setFormData] = useState<User>({
     name: '',
     email: '',
     avatarUrl: '',
+    stackName: [],
     bio: '',
     password: '',
   })
@@ -47,10 +49,12 @@ function UserPage() {
         name: user.name || '',
         email: user.email || '',
         avatarUrl: user.avatarUrl || '',
+        stackName: user.stackName || [],
         bio: user.bio || '',
         // We do not pre-fill the password field for security reasons
         password: '',
       })
+      setStackNameText((user.stackName || []).join(', '))
     }
   }, [user])
 
@@ -77,26 +81,35 @@ function UserPage() {
     }
 
     try {
-      // Create a payload that only includes the password if it's been entered
-      const updatePayload= {
+      const updatePayload = {
         name: formData.name,
         email: formData.email,
         avatarUrl: formData.avatarUrl,
+        stackName: stackNameText.split(',').map((item) => item.trim()).filter(Boolean),
         bio: formData.bio,
-        password:formData.password
       };
 
-      if (formData.password) {
-        updatePayload.password = formData.password;
-      }
-
-      await updateUser(updatePayload)
-      
-      // Clear the password field after a successful update
-      setFormData((prevData) => ({ ...prevData, password: '' }));
+      await updateUser(updatePayload as User)
+      alert('Profile updated successfully.')
     } catch (error) {
       console.error('Failed to update user:', error)
       alert('Failed to update profile. Please try again.')
+    }
+  }
+
+  const handlePasswordUpdate = async () => {
+    if (!formData.password) {
+      alert('Please enter a new password to update.')
+      return
+    }
+
+    try {
+      await updateUser({ password: formData.password } as User)
+      setFormData((prevData) => ({ ...prevData, password: '' }))
+      alert('Password updated successfully.')
+    } catch (error) {
+      console.error('Failed to update password:', error)
+      alert('Failed to update password. Please try again.')
     }
   }
 
@@ -141,6 +154,9 @@ function UserPage() {
                 placeholder="Enter a new password"
                 type="password"
               />
+              <Button variant="outline" className="mt-2" onClick={handlePasswordUpdate}>
+                Update Password
+              </Button>
             </div>
             <div className="space-y-2">
               <Label htmlFor="avatarUrl">Avatar URL</Label>
@@ -150,6 +166,16 @@ function UserPage() {
                 onChange={handleInputChange}
                 placeholder="Enter a URL for your avatar"
               />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="stackName">Stack Names</Label>
+              <Input
+                id="stackName"
+                value={stackNameText}
+                onChange={(e) => setStackNameText(e.target.value)}
+                placeholder="Enter comma-separated stack labels"
+              />
+              <p className="text-xs text-muted-foreground">Example: Full Stack Developer, Android Developer, Java Developer</p>
             </div>
             <div className="space-y-2">
               <Label htmlFor="bio">Bio</Label>

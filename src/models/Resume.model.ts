@@ -6,6 +6,12 @@ interface Resume extends Document {
   uploadedAt: Date;
   fileName?: string;
   fileType?: string;
+  isAndroid?: boolean;
+  isIOS?: boolean;
+  isMac?: boolean;
+  isWeb?: boolean;
+  isServer?: boolean;
+  isWindows?: boolean;
 }
 
 const ResumeSchema = new Schema<Resume>({
@@ -14,6 +20,12 @@ const ResumeSchema = new Schema<Resume>({
   uploadedAt: { type: Date, default: Date.now },
   fileName: String,
   fileType: String,
+  isAndroid: { type: Boolean, default: false },
+  isIOS: { type: Boolean, default: false },
+  isMac: { type: Boolean, default: false },
+  isWeb: { type: Boolean, default: false },
+  isServer: { type: Boolean, default: false },
+  isWindows: { type: Boolean, default: false },
 });
 
 const ResumeModel:Model<Resume> = mongoose.models.Resume || model<Resume>('Resume', ResumeSchema);

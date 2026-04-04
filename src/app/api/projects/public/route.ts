@@ -17,11 +17,11 @@ export const GET = async(req:NextRequest)=>{
     }
     const projectId = (new URL(req.url)).searchParams.get("projectId")
     if(projectId){
-        const singleProject = await ProjectModel.findById(projectId)
+        const singleProject = await ProjectModel.findById(projectId).populate('skills', 'name level iconName isAndroid isWeb isISO isWindows isMac')
         return NextResponse.json(singleProject,{status:200})
     }
 
-    const allProject = await ProjectModel.find().select("-createdAt -updatedAt -userId");
+    const allProject = await ProjectModel.find().select("-createdAt -updatedAt -userId").populate('skills', 'name level iconName isAndroid isWeb isISO isWindows isMac');
 
     if(!allProject){
         return NextResponse.json({message:"Empty"},{status:200})

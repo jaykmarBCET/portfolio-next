@@ -7,6 +7,7 @@ interface User extends Document {
   email: string;
   password?: string;
   avatarUrl?: string;
+  stackName?: string[];
   bio?: string;
   createdAt?: Date;
 }
@@ -16,9 +17,14 @@ const UserSchema = new Schema<User>({
   email: { type: String, required: true, unique: true },
   password: { type: String },
   avatarUrl: { type: String },
+  stackName: { type: [String], default: [] },
   bio: { type: String },
   createdAt: { type: Date, default: Date.now },
 },{timestamps:true});
+
+if (mongoose.models.User) {
+  mongoose.models.User.schema.add({ stackName: { type: [String], default: [] } });
+}
 
 // Use a conditional check to see if the model already exists
 const UserModel: Model<User> = mongoose.models.User || model<User>('User', UserSchema);

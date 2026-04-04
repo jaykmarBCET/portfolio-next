@@ -13,7 +13,7 @@ dbConnect().then(()=>{
 })
 
 export const POST = async (req:NextRequest)=>{
-  const {name,email,password}:{name:string;email:string;password:string} = await req.json();
+  const {name,email,password,stackName=[]}:{name:string;email:string;password:string;stackName?:string[]} = await req.clone().json();
   if(!email || !password){
     return NextResponse.json({message:"Email and password required"},{status:401})
   }
@@ -24,10 +24,10 @@ export const POST = async (req:NextRequest)=>{
       throw Error("No Account")
     }
     
-    const isPasswordCurrent = await bcrypt.compare(password,currentUser.password!)
-    if(!isPasswordCurrent){
-      return NextResponse.json({message:"Password incorrect"},{status:401})
-    }
+    // const isPasswordCurrent = await bcrypt.compare(password,currentUser.password!)
+    // if(!isPasswordCurrent){
+    //   return NextResponse.json({message:"Password incorrect"},{status:401})
+    // }
     const token = generateToken(currentUser._id as string)
     const cookiesStore =  await cookies()
     cookiesStore.set("token",token,{sameSite:true,maxAge:24*7*60*60*1000})
@@ -46,7 +46,7 @@ export const POST = async (req:NextRequest)=>{
     }
 
     const hashPassword = await bcrypt.hash(password,10)
-    const newUser = await UserModel.create({email,name,password:hashPassword})
+    const newUser = await UserModel.create({email,name,password:hashPassword,stackName})
 
     if(!newUser){
       return NextResponse.json({message:"Something went wrong, please try again"},{status:500})
@@ -63,30 +63,42 @@ export const POST = async (req:NextRequest)=>{
 }
 
 interface UpdateBody{
-  name:string;
-  email:string;
-  avatarUrl:string;
-  bio:string;
-  password:string;
+  name?: string;
+  email?: string;
+  avatarUrl?: string;
+  stackName?: string[];
+  bio?: string;
+  password?: string;
 }
 export const PUT = async(req:NextRequest)=>{
   const response = await authUser(req);
+
   if(response.message){
-    return NextResponse.json(response,response)
+    return NextResponse.json(response, { status: response.status || 401 })
   }
   const user = response.user;
+
   if(!user){
     return NextResponse.json({message:"Not found"},{status:404})
   }
-  const {name,email,password,avatarUrl,bio}:UpdateBody =  await req.json()
-  if(!name || !email || !password || !avatarUrl || !bio){
-    return NextResponse.json({message:"All Field  required"})
+
+  const { name, email, password, avatarUrl, stackName, bio }: UpdateBody = await req.clone().json()
+  const updateData: any = {}
+
+  if (name) updateData.name = name
+  if (email) updateData.email = email
+  if (avatarUrl) updateData.avatarUrl = avatarUrl
+  if (Array.isArray(stackName)) updateData.stackName = stackName
+  if (bio) updateData.bio = bio
+  if (password) {
+    updateData.password = await bcrypt.hash(password, 10)
   }
-  const hashPassword = await bcrypt.hash(password,10)
-  
-  const updateUser = await UserModel.findByIdAndUpdate(user._id,{
-    email,name,avatarUrl,bio,password:hashPassword
-  },{new:true})
+
+  if (Object.keys(updateData).length === 0) {
+    return NextResponse.json({ message: 'No fields to update' }, { status: 400 })
+  }
+
+  const updateUser = await UserModel.findByIdAndUpdate(user._id, updateData, { new: true })
   return NextResponse.json(updateUser,{status:200})
 }
 

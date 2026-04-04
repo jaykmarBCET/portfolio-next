@@ -25,6 +25,12 @@ type ResumeForm = {
   fileUrl: string
   fileName: string
   fileType: string | 'PDF' | 'Image'
+  isAndroid: boolean
+  isIOS: boolean
+  isMac: boolean
+  isWeb: boolean
+  isServer: boolean
+  isWindows: boolean
 }
 
 // Separate component for a single resume card
@@ -63,6 +69,14 @@ const ResumeCard = ({ resume, onEdit, onDelete }: {
             View Full File
           </a>
 
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            {resume.isWeb && <span className="rounded-full bg-slate-800 px-2 py-1 text-xs font-medium text-slate-200">Web</span>}
+            {resume.isAndroid && <span className="rounded-full bg-slate-800 px-2 py-1 text-xs font-medium text-slate-200">Android</span>}
+            {resume.isIOS && <span className="rounded-full bg-slate-800 px-2 py-1 text-xs font-medium text-slate-200">iOS</span>}
+            {resume.isMac && <span className="rounded-full bg-slate-800 px-2 py-1 text-xs font-medium text-slate-200">macOS</span>}
+            {resume.isServer && <span className="rounded-full bg-slate-800 px-2 py-1 text-xs font-medium text-slate-200">Server</span>}
+            {resume.isWindows && <span className="rounded-full bg-slate-800 px-2 py-1 text-xs font-medium text-slate-200">Windows</span>}
+          </div>
           <div className="mt-3 flex gap-2">
             <Button size="sm" onClick={() => onEdit(resume)}>
               Edit
@@ -108,6 +122,12 @@ function ResumePage() {
     fileUrl: '',
     fileName: '',
     fileType: 'PDF',
+    isAndroid: false,
+    isIOS: false,
+    isMac: false,
+    isWeb: false,
+    isServer: false,
+    isWindows: false,
   })
   const [loading, setLoading] = useState(true)
   const [editingId, setEditingId] = useState<string | null>(null)
@@ -130,7 +150,17 @@ function ResumePage() {
   }
 
   const resetForm = () => {
-    setForm({ fileUrl: '', fileName: '', fileType: 'PDF' })
+    setForm({
+      fileUrl: '',
+      fileName: '',
+      fileType: 'PDF',
+      isAndroid: false,
+      isIOS: false,
+      isMac: false,
+      isWeb: false,
+      isServer: false,
+      isWindows: false,
+    })
   }
 
   const handleSubmit = async () => {
@@ -142,6 +172,12 @@ function ResumePage() {
     const resumeData = {
       ...form,
       uploadedAt: new Date(),
+      isAndroid: form.isAndroid,
+      isIOS: form.isIOS,
+      isMac: form.isMac,
+      isWeb: form.isWeb,
+      isServer: form.isServer,
+      isWindows: form.isWindows,
     }
 
     if (editingId) {
@@ -160,6 +196,12 @@ function ResumePage() {
       fileUrl: resume.fileUrl,
       fileName: resume.fileName || '',
       fileType: resume.fileType as string,
+      isAndroid: resume.isAndroid || false,
+      isIOS: resume.isIOS || false,
+      isMac: resume.isMac || false,
+      isWeb: resume.isWeb || false,
+      isServer: resume.isServer || false,
+      isWindows: resume.isWindows || false,
     })
   }
 
@@ -209,6 +251,32 @@ function ResumePage() {
                 <SelectItem value="Image">Image</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { label: 'Web', field: 'isWeb' },
+              { label: 'Android', field: 'isAndroid' },
+              { label: 'iOS', field: 'isIOS' },
+              { label: 'macOS', field: 'isMac' },
+              { label: 'Server', field: 'isServer' },
+              { label: 'Windows', field: 'isWindows' },
+            ].map(({ label, field }) => (
+              <label key={field} className="flex items-center gap-2 text-sm">
+                <input
+                  type="checkbox"
+                  checked={form[field as keyof ResumeForm] as boolean}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      [field]: e.target.checked,
+                    })
+                  }
+                  className="h-4 w-4 rounded border border-gray-300 text-blue-600 focus:ring-blue-500"
+                />
+                {label}
+              </label>
+            ))}
           </div>
         </CardContent>
         <CardFooter>

@@ -225,5 +225,25 @@ export const usePublicProfileStore = create<CombinedStore>((set) => ({
             console.error("Failed to fetch social media:", error);
         }
     },
+    getFullProfile: async () => {
+        try {
+            const response = await axios.get("/api/public-profile");
+            set({
+                user: response.data.user,
+                skills: response.data.skills,
+                projects: response.data.projects,
+                educationList: response.data.educationList,
+                experiences: response.data.experiences,
+                certifications: response.data.certifications,
+                languages: response.data.languages,
+                interests: response.data.interests,
+                socialMedia: response.data.socialMedia,
+                resumes: response.data.resumes,
+                awards: response.data.awards,
+            });
+        } catch (error) {
+            console.error("Failed to fetch full profile:", error);
+        }
+    },
 
 }))

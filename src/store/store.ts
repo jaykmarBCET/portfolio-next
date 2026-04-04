@@ -496,5 +496,25 @@ export const useProfileStore = create<CombinedStore>((set, get) => ({
             console.error("Failed to delete social media:", error);
         }
     },
+    getFullProfile: async () => {
+        try {
+            // For authenticated users, fetch individual endpoints as needed
+            await Promise.all([
+                get().getUser(),
+                get().getAwards(),
+                get().getCertifications(),
+                get().getEducation(),
+                get().getExperiences(),
+                get().getInterests(),
+                get().getLanguages(),
+                get().getProjects(),
+                get().getResumes(),
+                get().getSkills(),
+                get().getSocialMedia(),
+            ]);
+        } catch (error) {
+            console.error("Failed to fetch full profile:", error);
+        }
+    },
 }));
 

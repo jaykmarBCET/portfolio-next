@@ -2,67 +2,66 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true,
     remotePatterns: [
-      // --- Social Media ---
-      { protocol: 'https', hostname: 'avatars.githubusercontent.com', pathname: '/**' }, // GitHub
-      { protocol: 'https', hostname: 'pbs.twimg.com', pathname: '/**' }, // Twitter
+      // --- Social Media & Avatars ---
+      { protocol: 'https', hostname: 'avatars.githubusercontent.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'pbs.twimg.com', pathname: '/**' },
       { protocol: 'https', hostname: 'abs.twimg.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'media.licdn.com', pathname: '/**' }, // LinkedIn
-      { protocol: 'https', hostname: 'scontent.xx.fbcdn.net', pathname: '/**' }, // Facebook
-      { protocol: 'https', hostname: '*.fna.fbcdn.net', pathname: '/**' },
-      { protocol: 'https', hostname: '*.cdninstagram.com', pathname: '/**' }, // Instagram
-      { protocol: 'https', hostname: '*.pinimg.com', pathname: '/**' }, // Pinterest
-      { protocol: 'https', hostname: 'snapchat.com', pathname: '/**' }, // Snapchat
-      { protocol: 'https', hostname: 'discordapp.com', pathname: '/**' }, // Discord
-      { protocol: 'https', hostname: 'cdn.discordapp.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'redditstatic.com', pathname: '/**' }, // Reddit
-      { protocol: 'https', hostname: 'preview.redd.it', pathname: '/**' },
-      { protocol: 'https', hostname: 'gravatar.com', pathname: '/**' }, // Gravatar
+      { protocol: 'https', hostname: '*.fbcdn.net', pathname: '/**' }, // Facebook
+      { protocol: 'https', hostname: '*.cdninstagram.com', pathname: '/**' },
+      { protocol: 'https', hostname: '*.pinimg.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'gravatar.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'media.licdn.com', pathname: '/**' },
 
-      // --- Hosting / Deployments ---
-      { protocol: 'https', hostname: '*.vercel.app', pathname: '/**' }, // Vercel
-      { protocol: 'https', hostname: '*.netlify.app', pathname: '/**' }, // Netlify
+      // --- Hosting & Deployment ---
+      { protocol: 'https', hostname: '*.vercel.app', pathname: '/**' },
+      { protocol: 'https', hostname: '*.netlify.app', pathname: '/**' },
       { protocol: 'https', hostname: '*.onrender.com', pathname: '/**' },
+      { protocol: 'https', hostname: '*.github.io', pathname: '/**' },
 
-      // --- Video / Streaming ---
-      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/**' }, // YouTube Thumbnails
-      { protocol: 'https', hostname: 'yt3.ggpht.com', pathname: '/**' }, // YouTube Avatars
-      { protocol: 'https', hostname: 'vimeo.com', pathname: '/**' }, // Vimeo
-      { protocol: 'https', hostname: 'i.vimeocdn.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'dailymotion.com', pathname: '/**' }, // Dailymotion
-      { protocol: 'https', hostname: 'dai.ly', pathname: '/**' },
+      // --- Video Platforms ---
+      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'yt3.ggpht.com', pathname: '/**' },
+      { protocol: 'https', hostname: '*.vimeocdn.com', pathname: '/**' },
 
-      // --- Design / Inspiration ---
-      
-      { protocol: 'https', hostname: 'mir-s3-cdn-cf.behance.net', pathname: '/**' }, // Behance
-      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' }, // Unsplash
+      // --- Design & Stock Images ---
+      { protocol: 'https', hostname: 'static.vecteezy.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
       { protocol: 'https', hostname: 'plus.unsplash.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'staticflickr.com', pathname: '/**' }, // Flickr
-      { protocol: 'https', hostname: 'live.staticflickr.com', pathname: '/**' },
-      { protocol: 'https', hostname: '*.pexels.com', pathname: '/**' }, // Pexels
-      { protocol: 'https', hostname: '*.pixabay.com', pathname: '/**' }, // Pixabay
+      { protocol: 'https', hostname: '*.staticflickr.com', pathname: '/**' },
+      { protocol: 'https', hostname: '*.pexels.com', pathname: '/**' },
+      { protocol: 'https', hostname: '*.pixabay.com', pathname: '/**' },
 
-
-      // --- Storage / CDN ---
-      { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/**' }, // Cloudinary
-      { protocol: 'https', hostname: 'lh3.googleusercontent.com', pathname: '/**' }, // Google Photos/Drive
+      // --- Storage & CDN ---
+      { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'lh3.googleusercontent.com', pathname: '/**' },
       { protocol: 'https', hostname: 'drive.google.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'dropbox.com', pathname: '/**' }, // Dropbox
-      { protocol: 'https', hostname: 'dl.dropboxusercontent.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'onedrive.live.com', pathname: '/**' }, // OneDrive
-      { protocol: 'https', hostname: 'graph.microsoft.com', pathname: '/**' },
-      { protocol: 'https', hostname: '*.amazonaws.com', pathname: '/**' }, // AWS S3
-      { protocol: 'https', hostname: '*.googleapis.com', pathname: '/**' }, // Firebase/CDN
+      { protocol: 'https', hostname: '*.googleusercontent.com', pathname: '/**' },
+      { protocol: 'https', hostname: '*.dropboxusercontent.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'onedrive.live.com', pathname: '/**' },
+      { protocol: 'https', hostname: '*.amazonaws.com', pathname: '/**' },
+      { protocol: 'https', hostname: '*.googleapis.com', pathname: '/**' },
       { protocol: 'https', hostname: 'storage.googleapis.com', pathname: '/**' },
 
-      // --- Favicons / Misc ---
-      { protocol: 'https', hostname: 'www.google.com', pathname: '/s2/favicons/**' }, // Google Favicon API
-      { protocol: 'https', hostname: 'api.iconify.design', pathname: '/**' }, // Iconify
-      { protocol: 'https', hostname: 'img.icons8.com', pathname: '/**' }, // Icons8
-      
-      { protocol: 'https', hostname: '*.githubusercontent.com', pathname: '/**' }, // GitHub CDN
-      { protocol: 'https', hostname: '*.gitlab.com', pathname: '/**' }, // GitLab
-      
+      // --- General & Common ---
+      { protocol: 'https', hostname: '*.google.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'raw.githubusercontent.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'img.shields.io', pathname: '/**' },
+      { protocol: 'https', hostname: '*.imgur.com', pathname: '/**' },
+
+      // --- Portfolio & Personal ---
+      { protocol: 'https', hostname: '*.wordpress.com', pathname: '/**' },
+      { protocol: 'https', hostname: '*.blogspot.com', pathname: '/**' },
+
+      // --- Development ---
+      { protocol: 'http', hostname: 'localhost', pathname: '/**' },
+      { protocol: 'http', hostname: '127.0.0.1', pathname: '/**' },
+
+      // --- Icons & Favicons ---
+      { protocol: 'https', hostname: 'api.iconify.design', pathname: '/**' },
+      { protocol: 'https', hostname: 'img.icons8.com', pathname: '/**' },
+      { protocol: 'https', hostname: '*.gitlab.com', pathname: '/**' },
     ],
   },
 };
