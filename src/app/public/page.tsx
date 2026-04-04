@@ -32,7 +32,7 @@ interface PlatformFilter {
 }
 
 // Type for items that have platform filtering capabilities
-type PlatformFilterableItem = Record<PlatformType, boolean> & Record<string, unknown>
+type PlatformFilterableItem = Partial<Record<PlatformType, boolean>>
 
 function PublicPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -86,14 +86,14 @@ function PublicPage() {
   }, [getFullProfile])
 
   // Filter helper function
-  const filterByPlatform = (items: PlatformFilterableItem[]) => {
-    if (!items) return []
+  const filterByPlatform = <T extends Partial<Record<PlatformType, boolean>>>(items: T[]) => {
+    if (!items) return [] as T[]
     return items.filter((item) => {
-      const hasSelectedPlatform = Object.entries(selectedPlatforms).some(
+      const hasSelectedPlatform = (Object.entries(selectedPlatforms) as [PlatformType, boolean][]).some(
         ([key, value]) => value && item[key]
       )
       return hasSelectedPlatform
-    })
+    }) as T[]
   }
 
   // Filtered data

@@ -83,7 +83,7 @@ export const PUT = async(req:NextRequest)=>{
   }
 
   const { name, email, password, avatarUrl, stackName, bio }: UpdateBody = await req.clone().json()
-  const updateData: any = {}
+  const updateData: Partial<UpdateBody> = {}
 
   if (name) updateData.name = name
   if (email) updateData.email = email
