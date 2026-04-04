@@ -24,10 +24,10 @@ export const POST = async (req:NextRequest)=>{
       throw Error("No Account")
     }
     
-    // const isPasswordCurrent = await bcrypt.compare(password,currentUser.password!)
-    // if(!isPasswordCurrent){
-    //   return NextResponse.json({message:"Password incorrect"},{status:401})
-    // }
+     const isPasswordCurrent = await bcrypt.compare(password,currentUser.password!)
+     if(!isPasswordCurrent){
+       return NextResponse.json({message:"Password incorrect"},{status:401})
+     }
     const token = generateToken(currentUser._id as string)
     const cookiesStore =  await cookies()
     cookiesStore.set("token",token,{sameSite:true,maxAge:24*7*60*60*1000})
