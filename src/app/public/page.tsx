@@ -144,7 +144,7 @@ function PublicPage() {
       <header className="bg-[#0b1326]/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-[#98cbff]/10">
         <div className="flex items-center justify-between px-4 md:px-6 py-4">
           <span className="text-xl md:text-2xl font-black tracking-tighter bg-gradient-to-r from-[#98cbff] to-[#2fd9f4] bg-clip-text text-transparent">
-            KINETIC
+            Jay
           </span>
           <div className="flex gap-4">
             <span className="material-symbols-outlined text-[#dae2fd] hover:text-[#2fd9f4] transition-all cursor-pointer">search</span>

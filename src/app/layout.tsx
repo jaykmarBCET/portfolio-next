@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "KINETIC | Digital Architect Portfolio",
+  title: "Jay Kumar | Digital Architect Portfolio",
   description: "Building high-kinetic digital architectures. Specialized in crafting immersive user environments with deep-space navy aesthetics.",
 };
 
