@@ -260,8 +260,7 @@ function PublicPage() {
               <div className="grid grid-cols-3 gap-4 mb-12">
                 {[
                   { number: projects.length, label: 'Projects' },
-                  { number: skills.length, label: 'Skills' },
-                  { number: experiences.length, label: 'Exp.' }
+                  { number: skills.length, label: 'Skills' }
                 ].map((stat, i) => (
                   <div key={i} className="bg-[#222a3d] border border-[#98cbff]/20 rounded-xl p-4 text-center hover:border-[#98cbff]/50 transition-all">
                     <div className="text-2xl md:text-3xl font-black text-[#2fd9f4] mb-1">{stat.number}</div>
