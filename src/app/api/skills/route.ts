@@ -29,19 +29,24 @@ export const POST = async (req: NextRequest) => {
   const user = await handleAuth(req);
   if (user instanceof NextResponse) return user;
 
-  const { name, level,iconName } = await req.json();
+  const { name, level, iconName, isAndroid, isWeb, isISO, isWindows, isMac } = await req.json();
   
-  const ishave = await SkillModel.findOne({name});
-  if(ishave)return NextResponse.json({message:"Already Have"},{status:401})
+  const ishave = await SkillModel.findOne({ name });
+  if (ishave) return NextResponse.json({ message: "Already Have" }, { status: 401 })
 
   const skill = await SkillModel.create({
     userId: user._id,
     iconName,
     name,
     level,
+    isAndroid: isAndroid || false,
+    isWeb: isWeb || false,
+    isISO: isISO || false,
+    isWindows: isWindows || false,
+    isMac: isMac || false,
   });
 
-  return NextResponse.json( skill , { status: 201 });
+  return NextResponse.json(skill, { status: 201 });
 };
 
 // ✅ Get Skills (all or single by id)
@@ -68,14 +73,23 @@ export const GET = async (req: NextRequest) => {
 export const PUT = async (req: NextRequest) => {
   const user = await handleAuth(req);
   if (user instanceof NextResponse) return user;
-
-  const {  name, level,iconName } = await req.json();
+  
+  const { name, level, iconName, isAndroid, isWeb, isISO, isWindows, isMac } = await req.json();
   const { searchParams } = new URL(req.url);
   const skillId = searchParams.get("skillId");
  
   const updated = await SkillModel.findOneAndUpdate(
     { _id: skillId, userId: user._id },
-    { name, level,iconName },
+    { 
+      name, 
+      level, 
+      iconName,
+      isAndroid: isAndroid || false,
+      isWeb: isWeb || false,
+      isISO: isISO || false,
+      isWindows: isWindows || false,
+      isMac: isMac || false,
+    },
     { new: true }
   );
 
@@ -83,7 +97,7 @@ export const PUT = async (req: NextRequest) => {
     return NextResponse.json({ message: "Skill not found" }, { status: 404 });
   }
 
-  return NextResponse.json( updated , { status: 200 });
+  return NextResponse.json(updated, { status: 200 });
 };
 
 // ✅ Delete Skill

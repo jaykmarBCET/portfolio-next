@@ -125,7 +125,14 @@ export interface Project {
     technologies: string[];
     githubUrl?: string;
     liveUrl?: string;
-    imageUrl?:string
+    imageUrl?:string;
+    skills?: string[]; // Array of skill IDs
+    isAndroid?: boolean;
+    isIOS?: boolean;
+    isMac?: boolean;
+    isWeb?: boolean;
+    isServer?: boolean;
+    isWindows?: boolean;
 }
 
 export interface ProjectStoreInfo {
@@ -142,7 +149,13 @@ export interface Resume {
     fileUrl: string;
     uploadedAt: Date;
     fileName?: string;
-    fileType?: string | "PDF" | "IMAGE"
+    fileType?: string | "PDF" | "IMAGE";
+    isAndroid?: boolean;
+    isIOS?: boolean;
+    isMac?: boolean;
+    isWeb?: boolean;
+    isServer?: boolean;
+    isWindows?: boolean;
 }
 
 export interface ResumeStoreInfo {
@@ -159,6 +172,11 @@ export interface Skill {
     name: string;
     level: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
     iconName?:string;
+    isAndroid?: boolean;
+    isWeb?: boolean;
+    isISO?: boolean;
+    isWindows?: boolean;
+    isMac?: boolean;
 }
 
 export interface SkillStoreInfo {
@@ -193,6 +211,7 @@ export interface User {
     email: string;
     password: string;
     avatarUrl?: string;
+    stackName?: string[];
     bio?: string;
     createdAt?: Date;
 }
@@ -202,6 +221,8 @@ export interface UserStoreInfo {
     registerAndLogin?: (user: User) => Promise<void>;
     getUser: () => Promise<void>;
     updateUser?: (user: User) => Promise<void>;
+    getFullProfile: () => Promise<void>;
 }
+
 
 

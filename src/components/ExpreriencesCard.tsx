@@ -1,43 +1,31 @@
 "use client";
 import { usePublicProfileStore } from '@/store/public.store';
 import React from 'react';
-import { Briefcase } from "lucide-react";
 
 function ExperienceCard() {
-  const { user, experiences } = usePublicProfileStore();
+  const { experiences } = usePublicProfileStore();
 
-  if (!experiences || experiences.length === 0 || !user) {
-    return <div></div>
+  if (!experiences || experiences.length === 0) {
+    return null;
   }
 
   return (
-    <div className="mt-4 px-4 sm:px-8 py-8 bg-[#39393934] w-[96vw] min-h-[24rem] shadow-lg rounded-2xl">
-      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-extrabold italic tracking-wide mb-8">
-        Experiences
-      </h1>
-
-      <div className="flex flex-col gap-6">
-        {experiences.map((item) => (
-          <div
-            key={item._id}
-            className="bg-white/5 border border-white/10 p-5 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <Briefcase className="text-blue-400 w-5 h-5" />
-              <h2 className="text-lg font-bold italic">{item.company}</h2>
-            </div>
-
-            <p className="text-sm text-gray-300 mb-2">
-              <span className="font-semibold">Position:</span> {item.position}
-            </p>
-
-            <p className="text-xs text-gray-400">
-              {item.startDate?.substring(0, 10)} →{" "}
-              {item?.endDate ? item.endDate.substring(0, 10) : "Present"}
-            </p>
+    <div className="space-y-10 border-l border-[#3f4852]/20 ml-3 pl-8 relative">
+      {experiences.slice(0, 3).map((experience, index) => (
+        <div key={experience._id} className="relative">
+          <div className={`absolute -left-[41px] top-1.5 w-4 h-4 rounded-full shadow-[0_0_15px_#2fd9f4] border-4 border-[#0b1326] ${
+            index === 0 ? 'bg-[#2fd9f4]' : 'bg-[#2d3449]'
+          }`}></div>
+          <div className="text-xs font-bold text-[#2fd9f4] uppercase tracking-widest mb-1">
+            {experience.startDate ? new Date(experience.startDate).getFullYear() : '2022'} — {
+              experience.endDate ? new Date(experience.endDate).getFullYear() : 'Present'
+            }
           </div>
-        ))}
-      </div>
+          <h3 className="text-lg font-bold text-[#dae2fd]">{experience.position}</h3>
+          <div className="text-[#98cbff] font-medium text-sm mb-3">{experience.company}</div>
+          <p className="text-sm text-[#bec7d4] leading-relaxed">{experience.description}</p>
+        </div>
+      ))}
     </div>
   );
 }

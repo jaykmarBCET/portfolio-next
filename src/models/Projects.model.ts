@@ -8,6 +8,13 @@ interface Project extends Document {
   githubUrl?: string;
   liveUrl?: string;
   imageUrl?:string;
+  skills: Schema.Types.ObjectId[]; // Many-to-many relationship with Skills
+  isAndroid?: boolean;
+  isIOS?: boolean;
+  isMac?: boolean;
+  isWeb?: boolean;
+  isServer?: boolean;
+  isWindows?: boolean;
 }
 
 const ProjectSchema = new Schema<Project>({
@@ -17,7 +24,14 @@ const ProjectSchema = new Schema<Project>({
   technologies: [{ type: String }],
   githubUrl: String,
   liveUrl: String,
-  imageUrl:String,
+  imageUrl: String,
+  skills: [{ type: Schema.Types.ObjectId, ref: 'Skill' }], // Reference to Skills
+  isAndroid: { type: Boolean, default: false },
+  isIOS: { type: Boolean, default: false },
+  isMac: { type: Boolean, default: false },
+  isWeb: { type: Boolean, default: false },
+  isServer: { type: Boolean, default: false },
+  isWindows: { type: Boolean, default: false },
 },{timestamps:true});
 
 const ProjectModel:Model<Project> =  mongoose.models.Project || model<Project>('Project', ProjectSchema);

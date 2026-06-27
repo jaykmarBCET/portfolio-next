@@ -29,16 +29,32 @@ export const POST = async (req: NextRequest) => {
   const user = await handleAuth(req);
   if (user instanceof NextResponse) return user;
 
-  const { fileUrl, fileName, fileType } = await req.json();
+  const {
+    fileUrl,
+    fileName,
+    fileType,
+    isAndroid = false,
+    isIOS = false,
+    isMac = false,
+    isWeb = false,
+    isServer = false,
+    isWindows = false,
+  } = await req.json();
 
   const resume = await ResumeModel.create({
     userId: user._id,
     fileUrl,
     fileName,
     fileType,
+    isAndroid,
+    isIOS,
+    isMac,
+    isWeb,
+    isServer,
+    isWindows,
   });
 
-  return NextResponse.json( resume , { status: 201 });
+  return NextResponse.json(resume, { status: 201 });
 };
 
 // ✅ Get Resume(s)
@@ -66,11 +82,20 @@ export const PUT = async (req: NextRequest) => {
   const user = await handleAuth(req);
   if (user instanceof NextResponse) return user;
 
-  const { fileName, fileType } = await req.json();
+  const {
+    fileName,
+    fileType,
+    isAndroid = false,
+    isIOS = false,
+    isMac = false,
+    isWeb = false,
+    isServer = false,
+    isWindows = false,
+  } = await req.json();
   const resumeId = (new URL(req.url)).searchParams.get("resumeId")
   const updated = await ResumeModel.findOneAndUpdate(
     { _id: resumeId, userId: user._id },
-    { $set: { fileName, fileType } },
+    { $set: { fileName, fileType, isAndroid, isIOS, isMac, isWeb, isServer, isWindows } },
     { new: true }
   );
 
