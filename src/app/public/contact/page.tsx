@@ -5,8 +5,10 @@ import React from 'react'
 
 function ContactPage() {
   return (
-    <div className='w-screen h-screen absolute top-0 left-0'>
-        <ContactCard/>
+    <div className='min-h-screen bg-[#060b15] py-16 px-4 sm:px-6 lg:px-8'>
+      <div className='mx-auto max-w-3xl'>
+        <ContactCard />
+      </div>
     </div>
   )
 }

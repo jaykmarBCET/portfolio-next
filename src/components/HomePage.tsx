@@ -1,10 +1,16 @@
 'use client'
 
-import HomePage from '@/components/HomePage'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { CircleLoader } from 'react-spinners'
+import { usePublicProfileStore } from '@/store/public.store'
+import ProjectCard from '@/components/ProjectCard'
+import SkillsCard from '@/components/SkillsCard'
+import ExperienceCard from '@/components/ExpreriencesCard'
 
-export default function Home() {
-  return <HomePage />
-}
+export default function HomePage() {
+  const { user, projects, skills, languages, socialMedia, experiences, getFullProfile } = usePublicProfileStore()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     async function loadProfile() {
@@ -117,6 +123,30 @@ export default function Home() {
                   <a href="#contact" className="rounded-3xl bg-[#0f1724] border border-[#98cbff]/10 px-5 py-4 text-center text-sm text-[#b7c4dc] transition hover:bg-[#121c31]">Get In Touch</a>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-10 text-center">
+            <p className="text-sm uppercase tracking-[0.3em] text-[#98cbff]/80">Skills & Experience</p>
+            <h2 className="mt-4 text-4xl font-black text-white sm:text-5xl">What I build and where I&apos;ve done it.</h2>
+            <p className="mt-4 max-w-2xl mx-auto text-base leading-8 text-[#bfc9df]">
+              A curated view of my technical strengths and the practical experience that backs them.
+            </p>
+          </div>
+
+          <div className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-[2rem] border border-[#ffffff14] bg-[#0f1724]/80 p-8 shadow-2xl shadow-[#0b111a]/60">
+              <h3 className="text-2xl font-semibold text-white mb-6">Core skills</h3>
+              <SkillsCard />
+            </div>
+
+            <div className="rounded-[2rem] border border-[#ffffff14] bg-[#0f1724]/80 p-8 shadow-2xl shadow-[#0b111a]/60">
+              <h3 className="text-2xl font-semibold text-white mb-6">Professional experience</h3>
+              <ExperienceCard />
             </div>
           </div>
         </div>
