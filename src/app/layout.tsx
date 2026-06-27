@@ -28,7 +28,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.variable} bg-[#0b1326] text-[#dae2fd] font-["Inter"]`}
-      >
+      > 
         {children}
         <ToasterProvider/>
       </body>
