@@ -95,3 +95,20 @@ body{
   scrollbar-width: none;
 }
 
+/* Alias used by components to hide native scrollbars (cross-browser) */
+.scrollbar-hide::-webkit-scrollbar {
+  /* hide WebKit scrollbars by making them zero size */
+  width: 0;
+  height: 0;
+}
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+.scrollbar-hide::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+

@@ -1,12 +1,20 @@
 "use client";
+import React, { useEffect } from 'react';
 import { usePublicProfileStore } from '@/store/public.store';
-import React from 'react';
 
 function ExperienceCard() {
-  const { experiences } = usePublicProfileStore();
+  const { experiences, getExperiences } = usePublicProfileStore();
+
+  useEffect(() => {
+    if ((!experiences || experiences.length === 0) && typeof getExperiences === 'function') {
+      getExperiences().catch((e) => console.error('Failed to load experiences:', e))
+    }
+  }, [experiences, getExperiences])
 
   if (!experiences || experiences.length === 0) {
-    return null;
+    return (
+      <div className="rounded-md border border-white/6 bg-[#071025]/60 p-4 text-sm text-[#bfc9df]">No professional experience added yet.</div>
+    )
   }
 
   return (
