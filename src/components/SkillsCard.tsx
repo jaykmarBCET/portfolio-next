@@ -9,9 +9,25 @@ function SkillsCard() {
   const scrollerRef = useRef<HTMLDivElement>(null)
   const [isAutoScroll, setIsAutoScroll] = useState(true)
 
-  if (!skills?.length) return null
+  const displaySkills = useMemo(() => skills || [], [skills])
 
-  const displaySkills = useMemo(() => skills, [skills])
+  useEffect(() => {
+    if (!isAutoScroll || !scrollerRef.current) return
+
+    const element = scrollerRef.current
+    const interval = window.setInterval(() => {
+      if (!element) return
+      if (element.scrollLeft + element.clientWidth >= element.scrollWidth - 10) {
+        element.scrollTo({ left: 0, behavior: 'smooth' })
+      } else {
+        element.scrollBy({ left: 1, behavior: 'smooth' })
+      }
+    }, 40)
+
+    return () => window.clearInterval(interval)
+  }, [isAutoScroll])
+
+  if (!skills?.length) return null
 
   const normalize = (name: string) => {
     if (!name) return ''
@@ -51,21 +67,6 @@ function SkillsCard() {
     })
   }
 
-  useEffect(() => {
-    if (!isAutoScroll || !scrollerRef.current) return
-
-    const element = scrollerRef.current
-    const interval = window.setInterval(() => {
-      if (!element) return
-      if (element.scrollLeft + element.clientWidth >= element.scrollWidth - 10) {
-        element.scrollTo({ left: 0, behavior: 'smooth' })
-      } else {
-        element.scrollBy({ left: 1, behavior: 'smooth' })
-      }
-    }, 40)
-
-    return () => window.clearInterval(interval)
-  }, [isAutoScroll])
 
   return (
     <section>
