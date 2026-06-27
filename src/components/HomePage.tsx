@@ -9,7 +9,7 @@ import SkillsCard from '@/components/SkillsCard'
 import ExperienceCard from '@/components/ExpreriencesCard'
 
 export default function HomePage() {
-  const { user, projects, skills, languages, socialMedia, experiences, getFullProfile } = usePublicProfileStore()
+  const { user, projects, skills, languages, socialMedia, getFullProfile } = usePublicProfileStore()
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {

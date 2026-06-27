@@ -6,10 +6,9 @@ import Link from 'next/link'
 function ProjectCard() {
     const { projects } = usePublicProfileStore()
     const carouselRef = useRef<HTMLDivElement>(null)
+    const displayProjects = useMemo(() => projects?.slice(0, 6) ?? [], [projects])
 
     if (!projects?.length) return null
-
-    const displayProjects = useMemo(() => projects.slice(0, 6), [projects])
 
     const scroll = (direction: 'left' | 'right') => {
         if (!carouselRef.current) return
