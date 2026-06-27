@@ -139,12 +139,12 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
-            <div className="rounded-[2rem] border border-[#ffffff14] bg-[#0f1724]/80 p-8 shadow-2xl shadow-[#0b111a]/60">
+            <div className="rounded-[2rem] border border-[#ffffff14] bg-[#0f1724]/80 p-6 shadow-2xl shadow-[#0b111a]/60">
               <h3 className="text-2xl font-semibold text-white mb-6">Core skills</h3>
               <SkillsCard />
             </div>
 
-            <div className="rounded-[2rem] border border-[#ffffff14] bg-[#0f1724]/80 p-8 shadow-2xl shadow-[#0b111a]/60">
+            <div className="rounded-[2rem] border border-[#ffffff14] bg-[#0f1724]/80 p-6 shadow-2xl shadow-[#0b111a]/60">
               <h3 className="text-2xl font-semibold text-white mb-6">Professional experience</h3>
               <ExperienceCard />
             </div>

@@ -1,31 +1,12 @@
 'use client'
 
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useMemo } from 'react'
 import { usePublicProfileStore } from '@/store/public.store'
 import { DevIcons } from '@/constants/SkiilsIcons'
 
 function SkillsCard() {
   const { skills } = usePublicProfileStore()
-  const scrollerRef = useRef<HTMLDivElement>(null)
-  const [isAutoScroll, setIsAutoScroll] = useState(true)
-
   const displaySkills = useMemo(() => skills || [], [skills])
-
-  useEffect(() => {
-    if (!isAutoScroll || !scrollerRef.current) return
-
-    const element = scrollerRef.current
-    const interval = window.setInterval(() => {
-      if (!element) return
-      if (element.scrollLeft + element.clientWidth >= element.scrollWidth - 10) {
-        element.scrollTo({ left: 0, behavior: 'smooth' })
-      } else {
-        element.scrollBy({ left: 1, behavior: 'smooth' })
-      }
-    }, 40)
-
-    return () => window.clearInterval(interval)
-  }, [isAutoScroll])
 
   if (!skills?.length) return null
 
@@ -59,63 +40,22 @@ function SkillsCard() {
     }
   }
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (!scrollerRef.current) return
-    scrollerRef.current.scrollBy({
-      left: direction === 'left' ? -280 : 280,
-      behavior: 'smooth'
-    })
-  }
-
-
   return (
     <section>
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
+      <div className="mb-6">
         <div className="flex items-center gap-2">
           <div className="h-1 w-8 bg-[#2fd9f4] rounded-full" />
           <h3 className="text-[#dae2fd] font-bold tracking-tight uppercase text-sm">Core Stack</h3>
         </div>
-
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => scroll('left')}
-            className="rounded-full border border-[#2fd9f4]/15 bg-[#0b111f]/80 px-3 py-2 text-[#98cbff] transition hover:border-[#2fd9f4]/40"
-          >
-            <span className="material-symbols-outlined">chevron_left</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => scroll('right')}
-            className="rounded-full border border-[#2fd9f4]/15 bg-[#0b111f]/80 px-3 py-2 text-[#98cbff] transition hover:border-[#2fd9f4]/40"
-          >
-            <span className="material-symbols-outlined">chevron_right</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setIsAutoScroll((prev) => !prev)}
-            className="rounded-full border border-[#98cbff]/15 bg-[#0b111f]/80 px-3 py-2 text-[#98cbff] transition hover:border-[#98cbff]/40"
-          >
-            {isAutoScroll ? 'Pause' : 'Play'}
-          </button>
-        </div>
       </div>
 
-      <div
-        ref={scrollerRef}
-        onMouseEnter={() => setIsAutoScroll(false)}
-        onMouseLeave={() => setIsAutoScroll(true)}
-        className="overflow-x-auto scrollbar-hide py-4 px-2 md:px-4"
-      >
-        <div className="grid grid-flow-col auto-cols-[minmax(220px,220px)] grid-rows-2 gap-4">
-          {displaySkills.map((skill) => (
-            <div
-              key={skill._id}
-              className="w-full rounded-[1.75rem] border border-white/10 bg-[#111827]/80 p-5 shadow-[0_20px_60px_-40px_rgba(45,58,93,0.9)] transition-transform duration-300 hover:-translate-y-1"
-            >
-            <div className="flex items-center justify-between mb-5">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4 auto-rows-min">
+        {displaySkills.map((skill) => (
+          <div
+            key={skill._id}
+            className="w-full min-w-0 rounded-[1.75rem] border border-white/10 bg-[#111827]/80 p-5 shadow-[0_20px_60px_-40px_rgba(45,58,93,0.9)] transition-transform duration-300 hover:-translate-y-1 min-h-[140px] overflow-hidden"
+          >
+            <div className="flex items-center justify-between mb-5 gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-[#0f1724] border border-white/10 text-2xl text-[#2fd9f4]">
                 <i className={`${getDevIconClass(skill.name)} colored`} aria-hidden="true" />
               </div>
@@ -126,13 +66,7 @@ function SkillsCard() {
 
             <h4 className="text-lg font-semibold text-[#dae2fd] mb-2">{skill.name}</h4>
           </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="relative mt-3 h-4">
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0b111f] to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0b111f] to-transparent" />
+        ))}
       </div>
     </section>
   )
