@@ -1,17 +1,21 @@
 export const DevIcons: Record<string, string> = {
   // Programming languages
   java: "devicon-java-plain",
+  js: "devicon-javascript-plain",
   javascript: "devicon-javascript-plain",
+  ts: "devicon-typescript-plain",
   typescript: "devicon-typescript-plain",
   python: "devicon-python-plain",
   c: "devicon-c-plain",
   cpp: "devicon-cplusplus-plain",
+  cplusplus: "devicon-cplusplus-plain",
   csharp: "devicon-csharp-plain",
   php: "devicon-php-plain",
   ruby: "devicon-ruby-plain",
   swift: "devicon-swift-plain",
   kotlin: "devicon-kotlin-plain",
   go: "devicon-go-plain",
+  golang: "devicon-go-plain",
   rust: "devicon-rust-plain",
   dart: "devicon-dart-plain",
   elixir: "devicon-elixir-plain",
@@ -23,26 +27,37 @@ export const DevIcons: Record<string, string> = {
 
   // Frameworks & libraries
   react: "devicon-react-original",
+  reactjs: "devicon-react-original",
+  reactnative: "devicon-react-original",
   angular: "devicon-angularjs-plain",
+  angularjs: "devicon-angularjs-plain",
   vue: "devicon-vuejs-plain",
+  vuejs: "devicon-vuejs-plain",
   svelte: "devicon-svelte-plain",
+  next: "devicon-nextjs-original",
   nextjs: "devicon-nextjs-original",
+  nuxt: "devicon-nuxtjs-plain",
   nuxtjs: "devicon-nuxtjs-plain",
   express: "devicon-express-original",
+  expressjs: "devicon-express-original",
   django: "devicon-django-plain",
   flask: "devicon-flask-original",
   spring: "devicon-spring-plain",
+  springboot: "devicon-spring-plain",
   nestjs: "devicon-nestjs-plain",
   fastapi: "devicon-fastapi-plain",
   laravel: "devicon-laravel-plain",
   rails: "devicon-rails-plain",
   electron: "devicon-electron-original",
   jquery: "devicon-jquery-plain",
-  backbonejs: "devicon-backbonejs-plain",
+  flutter: "devicon-flutter-plain",
+  redux: "devicon-redux-original",
 
   // Databases
+  mongo: "devicon-mongodb-plain",
   mongodb: "devicon-mongodb-plain",
   mysql: "devicon-mysql-plain",
+  postgres: "devicon-postgresql-plain",
   postgresql: "devicon-postgresql-plain",
   redis: "devicon-redis-plain",
   sqlite: "devicon-sqlite-plain",
@@ -51,6 +66,7 @@ export const DevIcons: Record<string, string> = {
   influxdb: "devicon-influxdb-original",
   cassandra: "devicon-apachecassandra-plain",
   dynamodb: "devicon-dynamodb-plain",
+  supabase: "devicon-supabase-plain",
 
   // Tools & platforms
   git: "devicon-git-plain",
@@ -64,21 +80,27 @@ export const DevIcons: Record<string, string> = {
   gcp: "devicon-googlecloud-plain",
   heroku: "devicon-heroku-plain",
   netlify: "devicon-netlify-plain",
-  vercel: "devicon-vercel-original",
+  vercel: "devicon-[#000000] devicon-vercel-original",
   linux: "devicon-linux-plain",
   ubuntu: "devicon-ubuntu-plain",
   debian: "devicon-debian-plain",
   windows: "devicon-windows8-original",
   apple: "devicon-apple-original",
+  xcode: "devicon-xcode-plain",
+  postman: "devicon-postman-plain",
 
   // UI/Styling
+  html: "devicon-html5-plain",
   html5: "devicon-html5-plain",
+  css: "devicon-css3-plain",
   css3: "devicon-css3-plain",
+  tailwind: "devicon-tailwindcss-plain",
   tailwindcss: "devicon-tailwindcss-plain",
   bootstrap: "devicon-bootstrap-plain",
   sass: "devicon-sass-original",
   less: "devicon-less-plain",
   materialui: "devicon-materialui-plain",
+  mui: "devicon-materialui-plain",
   chakraui: "devicon-chakraui-plain",
   figma: "devicon-figma-plain",
   sketch: "devicon-sketch-plain",
@@ -86,21 +108,13 @@ export const DevIcons: Record<string, string> = {
   photoshop: "devicon-photoshop-plain",
   illustrator: "devicon-illustrator-plain",
   blender: "devicon-blender-original",
-  
 
-  // Android-specific (manual/custom mapping)
-  android: "devicon-android-original", // if available
-  androidstudio: "devicon-androidstudio-plain", // if available
-  jetpackcompose: "custom-jetpackcompose-icon",
-  kotlinandroid: "custom-kotlinandroid-icon",
-
-  // Cloud & backend libraries/platforms
-  cloudinary: "custom-cloudinary-icon",
-  
-  firebaseanalytics: "custom-firebaseanalytics-icon",
-  firestore: "custom-firestore-icon",
-  cloudfunctions: "custom-cloudfunctions-icon",
-  supabase: "custom-supabase-icon",   // 🔥 Supabase (Postgres-based backend as a service)
-  appwrite: "custom-appwrite-icon",
-  
-};
+  // Android & Mobile specific
+  android: "devicon-android-plain",
+  androidstudio: "devicon-androidstudio-plain",
+  gradle: "devicon-gradle-plain",
+  jetpackcompose: "devicon-android-plain",
+  kotlinandroid: "devicon-kotlin-plain",
+  room: "devicon-sqlite-plain",
+  retrofit: "devicon-java-plain",
+}

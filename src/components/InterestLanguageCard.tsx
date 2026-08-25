@@ -26,8 +26,8 @@ function InterestLanguageCard() {
         )
     }
     return (
-        <div className="mt-4 px-4 flex flex-wrap gap-2  sm:px-8 py-10 bg-[#39393934] w-[96vw] shadow rounded-2xl">
-            <div className='flex-1 min-w-72 border border-gray-800 py-2 rounded-xl'>
+        <div className="mt-4 px-4 sm:px-8 py-6 sm:py-10 bg-[#111827]/80 border border-white/10 w-full max-w-7xl mx-auto flex flex-col md:flex-row flex-wrap gap-4 shadow-2xl rounded-2xl">
+            <div className='flex-1 min-w-[240px] border border-gray-800 py-4 px-3 rounded-xl'>
                 <h1 className="text-center text-2xl  font-extrabold italic tracking-wide mb-10 text-gray-800 dark:text-gray-100">
                     Language
                 </h1>
@@ -43,7 +43,7 @@ function InterestLanguageCard() {
                 </div>
 
             </div>
-            <div className='flex-1 min-w-72 border border-gray-800 rounded-xl py-2'>
+            <div className='flex-1 min-w-[240px] border border-gray-800 rounded-xl py-4 px-3'>
                 <h1 className="text-center text-2xl font-extrabold italic tracking-wide mb-10 text-gray-800 dark:text-gray-100">
                     Interest
                 </h1>
@@ -59,7 +59,7 @@ function InterestLanguageCard() {
                 </div>
 
             </div>
-            <div className='flex-1 rounded-2xl min-w-72 border border-gray-800 py-2'>
+            <div className='flex-1 rounded-2xl min-w-[240px] border border-gray-800 py-4 px-3'>
                 <h1 className="text-center text-2xl  font-extrabold italic tracking-wide mb-10 text-gray-800 dark:text-gray-100">
                     Social Media
                 </h1>

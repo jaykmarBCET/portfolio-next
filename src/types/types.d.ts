@@ -77,6 +77,7 @@ export interface Experience {
     startDate: string;
     endDate?: string;
     description?: string;
+    location?: string;
 }
 
 export interface ExperienceStoreInfo {

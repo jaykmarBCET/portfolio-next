@@ -103,7 +103,7 @@ const AboutCard = () => {
     }
 
     return (
-        <div className="flex flex-wrap   bg-[#39393942] rounded-2xl  mx-2 shadow-2xl justify-center items-center w-[96vw] min-h-[95vh] p-6 gap-4">
+        <div className="relative flex flex-wrap bg-[#111827]/80 border border-white/10 rounded-2xl shadow-2xl justify-center items-center w-full max-w-7xl mx-auto p-4 sm:p-6 gap-4 min-h-[60vh]">
             {/* Left Column */}
             <button onClick={()=>router.push("/private/login")} className='  absolute bottom-2 transition-all duration-500 right-5 bg-[#39393942] hover:bg-blue-500 rounded-2xl text-gray-800 px-2 py-2   ' >Workbench</button>
             <div className="flex-1 flex  flex-col gap-y-4 flex-wrap">
